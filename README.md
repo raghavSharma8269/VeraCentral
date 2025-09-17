@@ -2,7 +2,7 @@
 
 ## Issues Encountered
 
-### 1. Duplicate Columns
+### Duplicate Columns
 
 - **Problem**: clean_jurisdiction() function was creating duplicate report_date columns
 - **Solution**: Removed column reordering since columns were already in correct order
@@ -20,15 +20,10 @@
 ### Code Structure
 
 - **4 Functions**: Split cleaning into separate functions (snake_case, report_date, clean_jurisdiction, convert_types) for clarity
-- **Sequential Processing**: Applied transformations in order - first rename columns, then create dates, then clean jurisdiction, finally convert types
-- **Direct Column Access**: Used exact column names ("reporting_month", "reporting_year", "jurisdiction_name") since I had access to the Excel file and knew the structure
-- **Simple Logic**: Each function does one thing - rename columns, combine dates, clean text, or convert types
+- **Order of Functions**: Applied transformations in order. First rename columns, then create dates, then clean jurisdiction, finally convert types
+- **Simple Logic**: Each function does one thing. Rename columns, combine dates, clean text, or convert types
 - **String Operations**: Used regex for snake_case conversion and county name cleaning
 - **Loop-based Type Conversion**: Iterated through each column to determine if it should be string or numeric
-
-### Technical Choices
-
 - **Pandas**: Used read_excel() and to_csv() as requested
-- **String Dates**: Kept dates as strings instead of datetime objects to avoid pandas conversion errors
 - **Regex Cleaning**: Used re.search() to find "County" in jurisdiction names and keep only that part
-- **Numeric Detection**: Applied conversion function to each value, converted non-numeric indicators to np.nan
+- **Numeric Detection**: Applied conversion function to each value, converted non numeric indicators to np.nan
